@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dr.Chain</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script>
+  function btn(){
+    //alert('wrtite : 소견서 입력\nshow : 소견서 출력');
+    swal("Writing Disease and Opinion");
+  }
+  function btn1(){
+    //alert('wrtite : 소견서 입력\nshow : 소견서 출력');
+    // swal('insert success! :)');
+    let timerInterval
+    Swal.fire({
+      title: 'Saving',
+      html: 'Complete in <strong></strong> seconds.',
+      timer: 2000,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          Swal.getContent().querySelector('strong')
+          .textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      onClose: () => {
+        clearInterval(timerInterval);
+        window.location.href="writeread.html";
+      }
+    }).then((result) => {
+      if (
+        // Read more about handling dismissals
+        result.dismiss === Swal.DismissReason.timer
+      ) {
+        console.log('Error')
+      }
+    })
+  }
+
+</script>
+
+<link rel="stylesheet" href="../../css/d_doctorsend.css">
+</head>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+var _user_id
+var _hospital_id
+var _disease
+var _opinion
+var _doctor_id
+var _img
+var _contract_addr
+
+function input(){
+  _user_id = document.getElementById("user_id").value;
+  _disease =  document.getElementById("disease").value;
+  _opinion = document.getElementById("opinion").value;
+  _doctor_id = document.getElementById("doctor_id").value;
+  console.log(_disease);
+}
+
+$(function(){
+  $("#inputbutton").click(function(){
+    input();
+    $.ajax({
+      url: "/records/insert", // 클라이언트가 요청을 보낼 서버의 URL 주소
+      data: { user_id: _user_id, disease:_disease, opinion : _opinion, doctor_id : _doctor_id },                // HTTP 요청과 함께 서버로 보낼 데이터
+      type: "POST",                             // HTTP 요청 방식(GET, POST)
+      fail: () => { console.log('fail');
+      alert('insert fail !!');
+      window.location.href="writeread.html";
+    },
+    success: (data) => {
+      console.log('success');
+      console.log(data);
+      if (data == 'OK') {
+        btn1();
+
+      } else {
+        alert('Error');
+        window.location.href="writeread.html";
+      }
+    }
+  });
+})
+})
+
+</script>
+<body>
+  <div class = "root">
+    <div class="box">
+      <h2>Write medical references</h2>
+      <form>
+        <div class="inputBox">
+          <input type="text" id="user_name" value="" required="" readonly>
+          <!--<label>Patient Name</label>-->
+        </div>
+        <div class="inputBox">
+          <input type="text" value="Dankook Univ Hospital" required="" readonly>
+          <!--<label>Hospital</label>-->
+        </div>
+        <div class="inputBox" style="display: none;">
+          <input type="text" id="user_id" value="" required="">
+          <label>User ID</label>
+        </div>
+        <div class="inputBox" style="display: none;">
+          <input type="text" id="doctor_id" value="" required="">
+          <label>Doctor id</label>
+        </div>
+        <div class="inputBox">
+          <input type="text" id = "disease" value="" required="">
+          <label>Disease</label>
+        </div>
+        <div class="inputBox">
+          <input type="text" id="opinion" value="" required="">
+          <label>Opinion</label>
+        </div>
+        <input style="margin-left: 120px;" type="button" id="inputbutton" name="" value="send">
+      </form>
+    </div>
+    <div class="manual">
+      <button style="width: auto; height:auto; background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      background: #03a9f4;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-left: 0px;" onclick="javascript:btn()"> Manual </button>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+var query = window.location.search.substring(1);
+var user_id = parseInt(query.split('=')[1]);
+var input_user_id = document.getElementById("user_id");
+input_user_id.value = user_id;
+
+var doctor_id = document.cookie.split('=')[1] || -1;
+var input_doctor_id = document.getElementById('doctor_id');
+input_doctor_id.value = doctor_id;
+
+var user_name = '';
+$.ajax({
+  url: "/user/"+user_id, // 클라이언트가 요청을 보낼 서버의 URL 주소
+  type: "GET",                             // HTTP 요청 방식(GET, POST)
+  fail: () => { console.log('fail');
+  alert('insert fail !!');
+
+},
+success: (data) => {
+  console.log('success');
+  user_name = data[0]['name'];
+  document.getElementById('user_name').value = user_name;
+}
+});
+</script>

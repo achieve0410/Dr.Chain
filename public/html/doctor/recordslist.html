@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dr.Chain</title>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+  function btn(){
+    //alert('wrtite : 소견서 입력\nshow : 소견서 출력');
+    swal("Checking the Patient's info");
+  }
+</script>
+<link rel="stylesheet" href="../../css/d_recordslist.css">
+
+</head>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+
+$(function(){
+  $("#listButton").click(function(){
+    var query = window.location.search.substring(1);
+    var user_id = parseInt(query.split('=')[1]);
+
+    $.ajax({
+      type: 'get',
+      url: '/records/doctor/'+user_id+'',
+      dataType : 'json',
+      fail: () => {
+        console.log('fail');
+      },
+      success: function(data){
+        var output='';
+        output +="<table class = 'table-style-one'>";
+
+        $.each(data,function(key,val){
+          var a_tag = '<a href="/html/patient/references.html?rid='+val.id+'">';
+          output +="<tr>";
+          output +="<td width=50 style='word-break:break-all'>"+val.id+"</td>";
+          output +="<td width=50 style='word-break:break-all'>"+val.user_id+" "+" </td>";
+          output +="<td width=50 style='word-break:break-all'>"+val.doctor_id+" "+" </td>";
+          output +="<td width=50 style='word-break:break-all'>"+a_tag+"<span>"+val.disease+"</span></a>"+" </td>";
+          output +="<td width=50 style='word-break:break-all'>"+val.opinion+"  "+" </td>";
+          output +="<td width=50 style='word-break:break-all'>"+(new Date(val.regTime)).toLocaleString()+"  "+" </td>";
+          output +="</tr>"
+        });
+        output +="</table>"
+        $("#listDiv").empty();
+        $("#listDiv").append(output);
+      }
+
+    });
+  })
+})
+</script>
+<body>
+  <div class = "root">
+    <div class="box">
+      <form>
+        <input style="margin-left: 320px;" type="button" id="listButton" value="show">
+        <br>
+        <table class = 'table-style-one'>
+          <tr>
+            <th width=50 style='word-break:break-all'>num</th>
+            <th width=50 style='word-break:break-all'>user</th>
+            <th width=50 style='word-break:break-all'>doctor</th>
+            <th width=50 style='word-break:break-all'>disease</th>
+            <th width=50 style='word-break:break-all'>opinion</th>
+            <th width=50 style='word-break:break-all'>regTime</th>
+          </tr>
+        </table>
+        <div id="listDiv" style="color:white; width:100%; height:400px; overflow:auto;"></div>
+      </form>
+    </div>
+    <div class="manual">
+      <button style="width: auto; height:auto; background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      background: #03a9f4;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-left: 0px; display:table; margin-left:auto; margin-right:auto;" onclick="javascript:btn()"> Manual </button>
+    </div>
+  </div>
+</body>
+</html>

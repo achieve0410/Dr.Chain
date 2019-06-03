@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dr.Chain</title>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+  function btn(){
+    //alert('wrtite : 소견서 입력\nshow : 소견서 출력');
+    swal("Click the name and you can write references");
+  }
+</script>
+<link rel="stylesheet" href="../../css/d_userList.css">
+
+</head>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+
+$(function(){
+  $("#listButton").click(function(){
+    $.ajax({
+      type: 'get',
+      url: '/user/all',
+      dataType : 'text',
+      fail: () => {
+        console.log('fail');
+      },
+      success: function(data){
+        var parse_data = JSON.parse(data);
+        var output='';
+        console.log(data);
+
+        $.each(parse_data,function(key,val){
+          var user_gender = '';
+          if(val.gender == 0){
+            user_gender = '남자';
+          } else if(val.gender == 1) {
+            user_gender = '여자';
+          } else {
+            user_gender = 'X';
+          }
+          var a_tag = '<a href="/html/doctor/doctorsend.html?uid='+val.id+'">';
+          output +="<table class = 'table-style-one'>";
+          output +="<tr style='text-align: center;'>";
+          output +="<td width=50 style='word-break:break-all'>"+a_tag+"<span>"+val.name+"</span></a>"+"</td>";
+          output +="<td width=50 style='word-break:break-all'>"+user_gender+" "+" </td>";
+          output +="<td width=50 style='word-break:break-all'>"+val.age+"  "+" </td>";
+          output +="</tr>"
+          output +="</table>"
+        });
+        $("#listDiv").empty();
+        $("#listDiv").append(output);
+      }
+
+    });
+  })
+})
+</script>
+<body>
+  <div class ="root">
+    <div class="box">
+      <h2>UserList</h2>
+      <form>
+        <input style="margin-left: 320px;" type="button" id="listButton" value="show">
+        <br><br>
+        <div>
+          <table class = 'table-style-one'>
+            <tr>
+              <th width=50 style='word-break:break-all'>name</th>
+              <th width=50 style='word-break:break-all'>gender</th>
+              <th width=50 style='word-break:break-all'>age</th>
+            </tr>
+          </table>
+        </div>
+        <div id="listDiv" style="color:white; width:100%; height:300px; overflow:auto;"></div>
+      </form>
+    </div>
+    <div class="manual">
+      <button style="width: auto; height:auto; background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      background: #03a9f4;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-left: 0px;" onclick="javascript:btn()"> Manual </button>
+    </div>
+  </div>
+</body>
+</html>
