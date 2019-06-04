@@ -37,5 +37,60 @@ Internet Explorer(혹은 다른 브라우저도 가능) 주소창에
 localhost:30001/login
 ```
 
+# Directory
+```
+Dr.Chain
+├── global
+│   └── db.js
+│
+├── public
+│   ├── css
+│   │   ├── d_doctorsend.css
+│   │   ├── d_recordslist.css
+│   │   ├── d_userList.css
+│   │   ├── d_userList2.css
+│   │   ├── d_writeread.css
+│   │   ├── p_recordslist.css
+│   │   ├── p_writeread.css
+│   │   └── select.css
+│   │
+│   ├── html
+│   │   ├── doctor
+│   │   │   ├── doctorsend.html
+│   │   │   ├── recordslist.html
+│   │   │   ├── userList.html
+│   │   │   ├── userList2.html
+│   │   │   └── writeread.html
+│   │   │
+│   │   └── patient
+│   │       ├── recordslist.html
+│   │       ├── references.html
+│   │       └── writeread.html
+│   │
+│   ├── image.jpg
+│   └── style.css
+│
+├── router
+│   └── html_router.js
+│
+├── signup
+│   └── signup.html
+│
+├── SmartContract
+│
+├── use_db
+│   ├── records.js
+│   └── user.js
+│
+├── app.js
+├── image.jpg
+├── login.html
+├── package.json
+├── package-lock.json
+├── README.md
+└── select.html
+```
+
+
 ## Testing Page
 > http://drchain.na.to/
