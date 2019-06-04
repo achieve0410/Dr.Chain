@@ -19,7 +19,7 @@
      ```sh
      $ ganache-cli
      ```
- 3. 터미널을 추가로 하나 더 연 후 1번에서 내려받았던 소스 코드 디렉토리로 이동한다.  
+ 3. 터미널을 추가로 하나 더 연 후, 1번에서 내려받았던 소스 코드 디렉토리로 이동한다.  
      ```sh
      $ cd source_code_dir
      ```
@@ -32,14 +32,14 @@
      $ node app.js
      ```
 # Usage
-Internet Explorer(혹은 다른 브라우저도 가능) 주소창에
+Internet Explorer(혹은 다른 브라우저도 가능) 주소창에 다음과 같이 입력
 ```sh
 localhost:30001/login
 ```
 
 # Directory
 ```
-Dr.Chain
+Dr.Chain ( Root directory )
 ├── global
 │   └── db.js
 │
