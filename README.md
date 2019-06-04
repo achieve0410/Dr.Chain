@@ -2,13 +2,15 @@
 > 위 프로젝트는 의료 기록과 같은 보안에 민감한 정보들을 블록체인과 DB에 이중 저장하여  
 > 저장된 정보의 무결성과 보안성을 유지할 수 있도록 하는 것을 목적으로 하고 있습니다.
 
+# Setup
+
 ## Requirements
  - MYSQL DB (Install: https://www.mysql.com/downloads/)
  + Ganache (Install: https://truffleframework.com/ganache)
  - Node.js (Install: https://nodejs.org/ko/download/)
  + Source Code (Install: git clone https://github.com/jae123123/Dr.Chain)
 
-## How to Start
+## Installation & Start
  1. 프로젝트 소스 코드를 적당한 디렉토리에 내려받는다.  
      ```sh
      $ git clone https://github.com/jae123123/Dr.Chain
@@ -29,8 +31,7 @@
      ```sh
      $ node app.js
      ```
-
-
+# Usage
 
 ## Testing Page
 > http://drchain.na.to/
