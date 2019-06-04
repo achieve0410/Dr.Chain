@@ -43,6 +43,11 @@ Dr.Chain ( Root directory )
 ├── global
 │   └── db.js
 │
+├── node_modules
+│   ├── module_name_1
+│   ├── ...
+│   └── module_name_n
+│
 ├── public
 │   ├── css
 │   │   ├── d_doctorsend.css
