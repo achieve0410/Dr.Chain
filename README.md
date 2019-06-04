@@ -21,11 +21,11 @@
      ```sh
      $ cd source_code_dir
      ```
- 4. 프로젝트 실행을 위한 모듈들을 설치한다. (명령어: npm install)  
+ 4. 프로젝트 실행을 위한 모듈들을 설치한다.  
      ```sh
      $ npm install
      ```
- 5. 디렉토리 내에 node_modules폴더가 생성이 되었으면 서버를 실행시킨다. (명령어: node app.js)  
+ 5. 디렉토리 내에 node_modules폴더가 생성이 되었으면 서버를 실행시킨다.  
      ```sh
      $ node app.js
      ```
