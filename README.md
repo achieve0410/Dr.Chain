@@ -32,6 +32,10 @@
      $ node app.js
      ```
 # Usage
+Internet Explorer(혹은 다른 브라우저도 가능) 주소창에
+```sh
+localhost:30001/login
+```
 
 ## Testing Page
 > http://drchain.na.to/
