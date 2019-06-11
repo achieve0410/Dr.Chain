@@ -44,6 +44,14 @@ localhost:30001/login
 # Directory
 ```
 Dr.Chain ( Root directory )
+│
+├── SmartContract
+│   ├── DrCoin.sol
+│   ├── README.md
+│   ├── HospitalData.sol
+│   ├── RecordData.sol
+│   └── UserData.sol
+│
 ├── global
 │   └── db.js
 │
@@ -84,13 +92,6 @@ Dr.Chain ( Root directory )
 │
 ├── signup
 │   └── signup.html
-│
-├── SmartContract
-│   ├── DrCoin.sol
-│   ├── README.md
-│   ├── HospitalData.sol
-│   ├── RecordData.sol
-│   └── UserData.sol
 │
 ├── use_db
 │   ├── records.js
