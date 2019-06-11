@@ -1,17 +1,24 @@
+/*
+ * Created on June 11, 2019
+ * Dr.Chain Project
+ * @author: Jae-Hyeong Kim, Su-Min Lee, Won-Hyo Choi
+ */
 const express = require('express');
 const router = express.Router();
 
 const conn = require('../global/db.js');
 const crypto = require('crypto');
 
+// encrypt function
 function encrypt(text, key) {
 	const cipher = crypto.createCipher('aes-256-cbc', key);
 	let encipheredContent = cipher.update(text, 'utf8', 'hex');
 	encipheredContent += cipher.final('hex');
-	
+
 	return encipheredContent;
 }
 
+// decrypt function
 function decrypt(text, key) {
 	const decipher = crypto.createDecipher('aes-256-cbc', key);
 	let decipheredContent = decipher.update(text, 'hex', 'utf8');
@@ -20,28 +27,31 @@ function decrypt(text, key) {
 	return decipheredContent;
 }
 
+// get the hash value of input data
 function get_hash(text) {
 	const shasum = crypto.createHash('sha1');
 	shasum.update(text);
 	return shasum.digest('hex');
 }
 
+// get all data from user table
 router.get('/all', (req, res, next) => {
 	conn.query('SELECT * FROM user', (err, rows, fields) => {
 		try {
 			if(!err){
 				res_data = JSON.parse(JSON.stringify(rows));
 				res.json(res_data);
-			} else {
+			} else { // Error handling
 				console.log('Error while performing Query.', err);
 			}
-		} catch (e) {
+		} catch (e) { // Error handling
 			next(e);
 		}
 
 	});
 });
 
+// get specific data from user table
 router.get('/:id', (req, res, next) => {
 	conn.query('SELECT * FROM user WHERE id='+req.params.id, (err, rows, fields) => {
 		try {
@@ -51,86 +61,13 @@ router.get('/:id', (req, res, next) => {
 			} else {
 				console.log('Error while performing Query.', err);
 			}
-		} catch(e) {
+		} catch(e) { // Error handling
 			next(e);
 		}
 	});
 });
 
-router.post('/insert', (req, res, next) => {
-	const u_name = req.body.name || null;
-	const u_gender = req.body.gender || null;
-	const u_age = req.body.age || null;
-	const u_role = req.body.role || null;
-	// const u_reference_num = req.body.reference_num || 0;
-	// const u_spec = req.body.spec || '';
-
-	let json_obj = {};
-	json_obj['name'] = u_name;
-	json_obj['gender'] = u_gender;
-	json_obj['age'] = u_age;
-	json_obj['role'] = u_role;
-	let json_str = JSON.stringify(json_obj);
-
-	console.log(u_role);
-
-	let query = "INSERT INTO user (name, gender, age, role) values (?, ?, ?, ?);";
-	let param = [u_name, u_gender, u_age, u_role];
-	conn.query(query, param, (err, rows, fields) => {
-		try{
-			if(!err) {
-				console.log('insert success');
-				let res_data = JSON.parse(JSON.stringify(rows));
-
-				let data_secure = encrypt(json_str, 'temp key');
-				let hash_secure = get_hash(json_str);
-
-				let query_secure = "INSERT INTO user_secure (id, data, hash) values ((select id from user where name=? order by id desc limit 1), ?, ?);";
-				let param_secure = [u_name, data_secure, hash_secure];
-
-				let insertId = res_data['insertId'];
-
-				conn.query(query_secure, param_secure, (err, results) => {
-					try {
-						if(!err){
-							console.log('secure insert success!');
-						} else {
-							console.log('secure user fail!', err);
-						}
-					} catch (e) {
-						next(e);
-					}
-				});
-				res.json(res_data);
-			} else {
-				console.log('Error while performing Query.', err);
-			}
-		} catch(e) {
-			next(e);
-		}
-	});
-});
-
-router.delete('/delete', (req, res, next) => {
-	const u_id = req.body.id || req.params.id;
-
-	let query = "DELETE FROM user WHERE id = ?;"
-	let param = [u_id];
-	conn.query(query, param, (err, result) => {
-		try {
-			if(!err) {
-				console.log('delete success');
-				res_data = JSON.parse(JSON.stringify(result));
-				res.json(res_data);
-			} else {
-				console.log('Error while performing Query.', err);
-			}
-		} catch (e) {
-			next(e);
-		}
-	});
-});
-
+// sign up and insert data
 router.post('/signup', (req, res, next) => {
 	if(req.body.gender<0 || req.body.gender>1){
 		res.status(500).redirect("/signup");
@@ -169,20 +106,21 @@ router.post('/signup', (req, res, next) => {
 							} else {
 								res.status(500);
 							}
-						} catch (e) {
+						} catch (e) { // Error handling
 							next(e);
 						}
 					})
-				} else {
+				} else { // Error handling
 					console.log("Error while performing Query.", err);
 				}
-			} catch (e) {
+			} catch (e) { // Error handling
 				next(e);
 			}
 		})
 	}
 });
 
+// login
 router.post('/signin', (req, res, next) => {
 	const id_login = req.body.id || null;
 	const pw_login = req.body.password || null;
@@ -205,10 +143,10 @@ router.post('/signin', (req, res, next) => {
 					res.cookie('user_id', user_id);
 					res.redirect("/select?id="+user_id);
 				}
-			} else {
+			} else { // Error handling
 				next(err);
 			}
-		} catch (e) {
+		} catch (e) { // Error handling
 			next(e);
 		}
 	})

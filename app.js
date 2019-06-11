@@ -1,10 +1,14 @@
+/*
+ * Created on June 11, 2019
+ * Dr.Chain Project
+ * @author: Jae-Hyeong Kim, Su-Min Lee, Won-Hyo Choi
+ */
 const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
 const cookie_parser = require('cookie-parser');
 const fs = require('fs');
-
 
 const user = require('./use_db/user.js');
 const records = require('./use_db/records.js');
@@ -16,18 +20,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookie_parser());
 
-
 app.use('/user', user);
 app.use('/records', records);
 app.use('', html_router);
 
 
-app.get('/post', (req, res) => {
-	fs.readFile('post.html', (err, data) => {
-		res.writeHead(200, {'Content-Type':'text/html'});
-		res.end(data);
-	});
-});
+
+// app.get('/post', (req, res) => {
+// 	fs.readFile('post.html', (err, data) => {
+// 		res.writeHead(200, {'Content-Type':'text/html'});
+// 		res.end(data);
+// 	});
+// });
+
+
+
+// login function
 app.get('/login', (req, res) => {
 	fs.readFile('login.html', (err, data) => {
 		res.writeHead(200, {'Content-Type':'text/html'});
@@ -35,6 +43,7 @@ app.get('/login', (req, res) => {
 	});
 });
 
+// select function in main page
 app.get('/select', (req, res) => {
 	fs.readFile('select.html', (err, data) => {
 		res.writeHead(200, {'Content-Type':'text/html'});
@@ -51,7 +60,6 @@ app.get('/imgs', (req, res) => {
 
 
 app.use(function(error, req, res, next) {
-	// 여기에 도달할 것입니다
 	res.json({ message: error.message });
 });
 

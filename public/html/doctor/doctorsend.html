@@ -6,12 +6,9 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script>
   function btn(){
-    //alert('wrtite : 소견서 입력\nshow : 소견서 출력');
     swal("Writing Disease and Opinion");
   }
   function btn1(){
-    //alert('wrtite : 소견서 입력\nshow : 소견서 출력');
-    // swal('insert success! :)');
     let timerInterval
     Swal.fire({
       title: 'Saving',
@@ -66,9 +63,9 @@ $(function(){
   $("#inputbutton").click(function(){
     input();
     $.ajax({
-      url: "/records/insert", // 클라이언트가 요청을 보낼 서버의 URL 주소
-      data: { user_id: _user_id, disease:_disease, opinion : _opinion, doctor_id : _doctor_id },                // HTTP 요청과 함께 서버로 보낼 데이터
-      type: "POST",                             // HTTP 요청 방식(GET, POST)
+      url: "/records/insert",
+      data: { user_id: _user_id, disease:_disease, opinion : _opinion, doctor_id : _doctor_id },
+      type: "POST",
       fail: () => { console.log('fail');
       alert('insert fail !!');
       window.location.href="writeread.html";
@@ -96,11 +93,9 @@ $(function(){
       <form>
         <div class="inputBox">
           <input type="text" id="user_name" value="" required="" readonly>
-          <!--<label>Patient Name</label>-->
         </div>
         <div class="inputBox">
           <input type="text" value="Dankook Univ Hospital" required="" readonly>
-          <!--<label>Hospital</label>-->
         </div>
         <div class="inputBox" style="display: none;">
           <input type="text" id="user_id" value="" required="">
@@ -148,8 +143,8 @@ input_doctor_id.value = doctor_id;
 
 var user_name = '';
 $.ajax({
-  url: "/user/"+user_id, // 클라이언트가 요청을 보낼 서버의 URL 주소
-  type: "GET",                             // HTTP 요청 방식(GET, POST)
+  url: "/user/"+user_id,
+  type: "GET",
   fail: () => { console.log('fail');
   alert('insert fail !!');
 

@@ -1,3 +1,10 @@
+/*
+ * Created on June 11, 2019
+ * Dr.Chain Project
+ * @author: Jae-Hyeong Kim, Su-Min Lee, Won-Hyo Choi
+ */
+
+// import mysql module and setting
 const mysql = require('mysql');
 const conn = mysql.createConnection({
   host : 'localhost',
@@ -7,7 +14,7 @@ const conn = mysql.createConnection({
   database : 'hermes'
 });
 
-conn.connect((err) => {
+conn.connect((err) => { // Error handling
   if(err){
     throw err;
   }

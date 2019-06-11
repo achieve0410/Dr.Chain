@@ -1,3 +1,8 @@
+/*
+ * Created on June 11, 2019
+ * Dr.Chain Project
+ * @author: Jae-Hyeong Kim, Su-Min Lee, Won-Hyo Choi
+ */
 const express = require('express');
 const router = express.Router();
 
@@ -7,8 +12,10 @@ const crypto = require('crypto');
 const Web3 = require("web3");
 let web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
-let contract_addr = "0x211e180030d137616c86411a63d7c45191f9d267";
+// address of contract -> get the value in Remix
+let contract_addr = "Enter_the_contract_address";
 
+// smart contract abi
 let abi = [
 	{
 		"constant": false,
@@ -92,10 +99,10 @@ let abi = [
 	}
 ];
 
-
+// connect to Contract
 let user_contract = new web3.eth.Contract(abi, contract_addr);
 
-
+// insert the values in block_chain
 function ether_input(id, hash){
 	let new_account = '';
 	web3.eth.getAccounts().then(e => {
@@ -106,22 +113,22 @@ function ether_input(id, hash){
 		}, (err, result) => {
 			if(!err) {
 				console.log("Block ether input success!");
-			} else {
+			} else { // Error handling
 				console.log("error");
 			}
 		});
 	})
-
 }
 
+// get the values in block_chain -> get the value in Remix
 function ether_output(id) {
 	var records_hash = '';
 
-	return user_contract.methods.Show_list(id).call({from: '0x3f8b26744dc7feeee4e1f56bee4d15c5adb77663'});
+	return user_contract.methods.Show_list(id).call({from: 'Enter_the_account_address'});
 }
 
 
-
+// encrypt function
 function encrypt(text, key) {
 	const cipher = crypto.createCipher('aes-256-cbc', key);
 	let encipheredContent = cipher.update(text, 'utf8', 'hex');
@@ -130,6 +137,7 @@ function encrypt(text, key) {
 	return encipheredContent;
 }
 
+// decrypt function
 function decrypt(text, key) {
 	const decipher = crypto.createDecipher('aes-256-cbc', key);
 	let decipheredContent = decipher.update(text, 'hex', 'utf8');
@@ -138,27 +146,31 @@ function decrypt(text, key) {
 	return decipheredContent;
 }
 
+// get the hash value of input data
 function get_hash(text) {
 	const shasum = crypto.createHash('sha1');
 	shasum.update(text);
+
 	return shasum.digest('hex');
 }
 
+// get all data from user table
 router.get('/all', (req, res, next) => {
 	conn.query('SELECT * FROM records_secure', (err, rows, fields) => {
 		try {
 			if(!err){
 				res_data = JSON.parse(JSON.stringify(rows));
 				res.json(res_data);
-			} else {
+			} else { // Error handling
 				console.log('Error while performing Query.', err);
 			}
-		} catch (e) {
+		} catch (e) { // Error handling
 			next(e);
 		}
 	});
 });
 
+// get specific data from block_chain
 router.get('/:id', (req, res, next) => {
 	conn.query('SELECT * FROM records_secure WHERE id='+req.params.id, (err, rows, fields) => {
 		try {
@@ -175,7 +187,6 @@ router.get('/:id', (req, res, next) => {
 				ether_output(records_id).then((result) => {
 					block_hash = result;
 					database_hash = hash_secure;
-					//database_hash = 'Different hash value.';
 
 					console.log("Block Chain's hash value : ", block_hash);
 					console.log("Database's hash value : ", database_hash);
@@ -183,20 +194,21 @@ router.get('/:id', (req, res, next) => {
 					if(block_hash == database_hash){
 						console.log('records get success!');
 						res.json(res_data);
-					} else {
+					} else { // Error handling
 						res.send('No validity');
 					}
 
-				}).catch(e => console.log(e));
+				}).catch(e => console.log(e)); // Error handling
 			} else {
 				console.log('Error while performing Query.', err);
 			}
-		} catch (e) {
+		} catch (e) { // Error handling
 			next(e);
 		}
 	});
 });
 
+// get specific data from block_chain in doctor authority
 router.get('/doctor/:user_id', (req, res, next) => {
 	const user_id = req.params.user_id || 0;
 
@@ -205,19 +217,20 @@ router.get('/doctor/:user_id', (req, res, next) => {
 
 	conn.query(query, param, (err, rows, fields) => {
 		try {
-			if(err) {
+			if(err) { // Error handling
 				res.status(500).send('NO');
 				console.log('Error while performing Query.', err);
 			} else {
 				res_data = JSON.parse(JSON.stringify(rows));
 				res.status(200).send(res_data);
 			}
-		} catch(e) {
+		} catch(e) { // Error handling
 			next(e);
 		}
 	})
 })
 
+// write record and insert data
 router.post('/insert', (req, res, next) => {
 	const user_id = req.body.user_id || null;
 	const doctor_id = req.body.doctor_id || null;
@@ -226,9 +239,6 @@ router.post('/insert', (req, res, next) => {
 	const img = req.body.img || null;
 	const contract_addr = req.body.contract_addr || null;
 	const hospital_id = req.body.hospital_id || null;
-	// const section = req.body.section;
-	// const rkey = req.body.rkey;
-	// const rinfo = req.body.rinfo;
 
 	let json_obj = {};
 	json_obj['user_id'] = user_id;
@@ -271,41 +281,22 @@ router.post('/insert', (req, res, next) => {
 							console.log('secure record fail!', err);
 							res.status(500).send('NO');
 						}
-					} catch (e) {
+					} catch (e) { // Error handling
 						next(e);
 					}
 				});
 
-			} else {
+			} else { // Error handling
 				console.log('Error while performing Query.', err);
 				res.status(500).send('NO');
 			}
-		} catch (e) {
+		} catch (e) { // Error handling
 			next(e);
 		}
 	});
 });
 
-router.delete('/delete', (req, res, next) => {
-	const r_id = req.body.id || req.params.id;
-
-	let query = "DELETE FROM records WHERE id = ?;"
-	let param = [r_id];
-	conn.query(query, param, (err, result) => {
-		try {
-			if(!err) {
-				console.log('delete success');
-				res_data = JSON.parse(JSON.stringify(result));
-				res.json(res_data);
-			} else {
-				console.log('Error while performing Query.', err);
-			}
-		} catch (e) {
-			next(e);
-		}
-	});
-});
-
+// insert hash value
 router.get('/hash/:r_id', (req, res, next) => {
 	const records_id = req.params.r_id || -1;
 
@@ -325,11 +316,11 @@ router.get('/hash/:r_id', (req, res, next) => {
 				json_obj['db_hash'] = db_hash;
 
 				res.json(json_obj);
-			} catch (e) {
+			} catch (e) { // Error handling
 				next(e);
 			}
 		})
-	}).catch(e => {console.log(e)});
+	}).catch(e => {console.log(e)}); // Error handling
 })
 
 module.exports = router;

@@ -125,8 +125,8 @@
 							let text_doctor = document.getElementById('input_doctor');
 
 							$.ajax({
-								url: "/records/"+records_id, // 클라이언트가 요청을 보낼 서버의 URL 주소            // HTTP 요청과 함께 서버로 보낼 데이터
-								type: "GET",                             // HTTP 요청 방식(GET, POST)
+								url: "/records/"+records_id,
+								type: "GET",
 								fail: () => {
 									console.log('fail');
 									alert('insert fail !!');
