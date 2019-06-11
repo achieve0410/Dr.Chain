@@ -9,6 +9,7 @@
  + Ganache (Install: https://truffleframework.com/ganache)
  - Node.js (Install: https://nodejs.org/ko/download/)
  + Source Code (Install: git clone https://github.com/jae123123/Dr.Chain)
+ - Remix (https://remix.ethereum.org/)
 
 ## Installation & Start
  1. 프로젝트 소스 코드를 적당한 디렉토리에 내려받는다.  
@@ -19,7 +20,7 @@
      ```sh
      $ ganache-cli
      ```
- 3. Remix (https://remix.ethereum.org/ )에 접속 후 Smart Contract 디렉토리의 RecordData.sol 파일의 코드를 복사해서 붙이기 
+ 3. Remix에 접속 후 Smart Contract 디렉토리의 RecordData.sol 파일의 코드를 복사해서 붙이기 
      ```sh
      Environment를 Web3 provider로 변경 후 Smart Contract Deploy
      ```
