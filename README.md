@@ -19,19 +19,24 @@
      ```sh
      $ ganache-cli
      ```
- 3. Remix에 접속 후 Smart Contract에 있는 Code를 복사 붙이기 후, Smart Contract 실행.  
+ 3. Remix (https://remix.ethereum.org/ )에 접속 후 Smart Contract 디렉토리의 RecordData.sol 파일의 코드를 복사해서 붙이기 
      ```sh
-     Web Provider로 네트워크 변경
+     Environment를 Web3 provider로 변경 후 Smart Contract Deploy
      ```
  4. 터미널을 추가로 하나 더 연 후, 1번에서 내려받았던 소스 코드 디렉토리로 이동한다.  
      ```sh
      $ cd source_code_dir
-     ```
- 5. 프로젝트 실행을 위한 모듈들을 설치한다.  
+     ```    
+ 5. Deployed 된 Contract의 주소 및 Account Address 를 복사 및 record.js의 각 부분에 입력
+     ```sh
+     contract_addr -> contract Address / ether_output function -> Account Address
+     ```    
+
+ 6. 프로젝트 실행을 위한 모듈들을 설치한다.  
      ```sh
      $ npm install
      ```
- 6. 디렉토리 내에 node_modules폴더가 생성이 되었으면 서버를 실행시킨다.  
+ 7. 디렉토리 내에 node_modules폴더가 생성이 되었으면 서버를 실행시킨다.  
      ```sh
      $ node app.js
      ```
