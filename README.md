@@ -86,6 +86,11 @@ Dr.Chain ( Root directory )
 │   └── signup.html
 │
 ├── SmartContract
+│   ├── DrCoin.sol
+│   ├── README.md
+│   ├── HospitalData.sol
+│   ├── RecordData.sol
+│   └── UserData.sol
 │
 ├── use_db
 │   ├── records.js
