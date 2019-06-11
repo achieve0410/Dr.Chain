@@ -1,6 +1,6 @@
 # Dr.Chain Project
 > 위 프로젝트는 의료 기록과 같은 보안에 민감한 정보들을 블록체인과 DB에 이중 저장하여  
-> 저장된 정보의 무결성과 보안성을 유지하는 것을 목적으로 하고 있습니다.
+> 저장된 정보의 무결성과 보안성을 유지하는 것을 목적으로 하고 있다.
 
 # Setup
 
@@ -27,7 +27,7 @@
      ```sh
      $ cd source_code_dir
      ```    
- 5. Deployed 된 Contract의 주소 및 Account Address 를 복사 및 record.js의 각 부분에 입력
+ 5. Deployed 된 Contract의 주소 및 Account Address 를 복사 및 record.js의 각 부분에 입력한다.
      ```sh
      contract_addr -> contract Address / ether_output function -> Account Address
      ```    
@@ -41,7 +41,7 @@
      $ node app.js
      ```
 # Usage
-Internet Explorer(혹은 다른 브라우저도 가능) 주소창에 다음과 같이 입력
+Internet Explorer(혹은 다른 브라우저도 가능) 주소창에 다음과 같이 입력한다.
 ```sh
 localhost:30001/login
 ```
