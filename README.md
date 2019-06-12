@@ -5,11 +5,16 @@
 # Setup
 
 ## Requirements
- - MYSQL DB (Install: https://www.mysql.com/downloads/)
- + Ganache (Install: https://truffleframework.com/ganache)
- - Node.js (Install: https://nodejs.org/ko/download/)
+ - MYSQL DB(link)  
+ [![mysql](https://user-images.githubusercontent.com/37432155/59326987-35f2ff00-8d23-11e9-8c8a-1681870b1012.png)](https://www.mysql.com/downloads/)
+ + Ganache(link)  
+ [![ganache](https://user-images.githubusercontent.com/37432155/59326986-355a6880-8d23-11e9-9413-27d7e396ec34.png)](https://truffleframework.com/ganache)
+ - Node.js(link)  
+ [![nodejs](https://user-images.githubusercontent.com/37432155/59326988-35f2ff00-8d23-11e9-83ef-354dd52a18a4.jpg)](https://nodejs.org/ko/download/)
  + Source Code (Install: git clone https://github.com/jae123123/Dr.Chain)
- - Remix (https://remix.ethereum.org/)
+ - Remix(link)  
+ [![remix](https://user-images.githubusercontent.com/37432155/59326989-35f2ff00-8d23-11e9-9522-b9d439b93f93.png)
+](https://remix.ethereum.org/)
 
 ## Installation & Start
  1. 프로젝트 소스 코드를 적당한 디렉토리에 내려받는다.  
@@ -20,6 +25,13 @@
      ```sh
      $ ganache-cli
      ```
+ 3. DB사용을 위해 임의의 데이터베이스 생성 후 다음과 같이 테이블을 생성한다.
+     
+     ![records_table](https://user-images.githubusercontent.com/37432155/59326712-5e2e2e00-8d22-11e9-9bb9-53ee3a46d1fc.png)
+     ![records_secure_table](https://user-images.githubusercontent.com/37432155/59326736-7900a280-8d22-11e9-9cb1-d8a7a94d7221.png)
+     ![user_table](https://user-images.githubusercontent.com/37432155/59326748-84ec6480-8d22-11e9-8cdc-0e078db3702c.png)
+     ![user_sign_table](https://user-images.githubusercontent.com/37432155/59326767-8d449f80-8d22-11e9-9d3a-c5a8342f932b.png)
+     
  3. Remix에 접속 후 Smart Contract 디렉토리의 RecordData.sol 파일의 코드를 복사해서 붙이기 
      ```sh
      Environment를 Web3 provider로 변경 후 Smart Contract Deploy
