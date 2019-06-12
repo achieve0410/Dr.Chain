@@ -6,13 +6,17 @@
 
 ## Requirements
  - MYSQL DB(link)  
+   
  [![mysql](https://user-images.githubusercontent.com/37432155/59326987-35f2ff00-8d23-11e9-8c8a-1681870b1012.png)](https://www.mysql.com/downloads/)
  + Ganache(link)  
+   
  [![ganache](https://user-images.githubusercontent.com/37432155/59326986-355a6880-8d23-11e9-9413-27d7e396ec34.png)](https://truffleframework.com/ganache)
  - Node.js(link)  
+   
  [![nodejs](https://user-images.githubusercontent.com/37432155/59326988-35f2ff00-8d23-11e9-83ef-354dd52a18a4.jpg)](https://nodejs.org/ko/download/)
- + Source Code (Install: git clone https://github.com/jae123123/Dr.Chain)
+ + Source Code  
  - Remix(link)  
+   
  [![remix](https://user-images.githubusercontent.com/37432155/59326989-35f2ff00-8d23-11e9-9522-b9d439b93f93.png)
 ](https://remix.ethereum.org/)
 
@@ -32,32 +36,38 @@
      ![user_table](https://user-images.githubusercontent.com/37432155/59326748-84ec6480-8d22-11e9-8cdc-0e078db3702c.png)
      ![user_sign_table](https://user-images.githubusercontent.com/37432155/59326767-8d449f80-8d22-11e9-9d3a-c5a8342f932b.png)
      
- 3. Remix에 접속 후 Smart Contract 디렉토리의 RecordData.sol 파일의 코드를 복사해서 붙이기 
+ 3. Remix에 접속한 후 SmartContract 디렉토리의 RecordData.sol 파일의 코드를 복사해 붙여넣는다.  
      ```sh
-     Environment를 Web3 provider로 변경 후 Smart Contract Deploy
-     ```
- 4. 터미널을 추가로 하나 더 연 후, 1번에서 내려받았던 소스 코드 디렉토리로 이동한다.  
+     1. 우상단의 Environment 항목을 Web3 provider로 변경  
+     2. Smart Contract Deploy 클릭
+     ```  
+     
+ 4. Deployed 된 Contract의 주소 및 Account Address 를 복사 및 records.js의 각 부분에 입력한다.
+     ```sh
+     1. record.js에서 contract_addr, function ether_output 찾기
+     2. Enter_the_contract_address 대신 Contract Address 입력
+     3. Enter_the_account_address 대신 Account Address 입력
+     ```    
+ 5. 터미널을 추가로 하나 더 연 후, 1번에서 내려받았던 소스 코드 디렉토리로 이동한다.  
      ```sh
      $ cd source_code_dir
-     ```    
- 5. Deployed 된 Contract의 주소 및 Account Address 를 복사 및 record.js의 각 부분에 입력한다.
-     ```sh
-     contract_addr -> contract Address / ether_output function -> Account Address
      ```    
 
  6. 프로젝트 실행을 위한 모듈들을 설치한다.  
      ```sh
      $ npm install
-     ```
+     ```  
+     
  7. 디렉토리 내에 node_modules폴더가 생성이 되었으면 서버를 실행시킨다.  
      ```sh
      $ node app.js
-     ```
+     ```  
+     
 # Usage
 Internet Explorer(혹은 다른 브라우저도 가능) 주소창에 다음과 같이 입력한다.
 ```sh
 localhost:30001/login
-```
+```  
 
 # Directory
 ```
