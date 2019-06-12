@@ -6,19 +6,22 @@
 
 ## Requirements
  - MYSQL DB(link)  
+ [![mysql](https://user-images.githubusercontent.com/37432155/59326987-35f2ff00-8d23-11e9-8c8a-1681870b1012.png)](https://www.mysql.com/downloads/)  
    
- [![mysql](https://user-images.githubusercontent.com/37432155/59326987-35f2ff00-8d23-11e9-8c8a-1681870b1012.png)](https://www.mysql.com/downloads/)
  + Ganache(link)  
+ [![ganache](https://user-images.githubusercontent.com/37432155/59326986-355a6880-8d23-11e9-9413-27d7e396ec34.png)](https://truffleframework.com/ganache)  
    
- [![ganache](https://user-images.githubusercontent.com/37432155/59326986-355a6880-8d23-11e9-9413-27d7e396ec34.png)](https://truffleframework.com/ganache)
  - Node.js(link)  
+ [![nodejs](https://user-images.githubusercontent.com/37432155/59326988-35f2ff00-8d23-11e9-83ef-354dd52a18a4.jpg)](https://nodejs.org/ko/download/)  
    
- [![nodejs](https://user-images.githubusercontent.com/37432155/59326988-35f2ff00-8d23-11e9-83ef-354dd52a18a4.jpg)](https://nodejs.org/ko/download/)
+   
  + Source Code  
- - Remix(link)  
    
+ - Remix(link)     
  [![remix](https://user-images.githubusercontent.com/37432155/59326989-35f2ff00-8d23-11e9-9522-b9d439b93f93.png)
-](https://remix.ethereum.org/)
+](https://remix.ethereum.org/)  
+  
+    
 
 ## Installation & Start
  1. 프로젝트 소스 코드를 적당한 디렉토리에 내려받는다.  
